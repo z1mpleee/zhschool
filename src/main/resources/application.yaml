@@ -1,0 +1,37 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: jdbc:mysql://ql.wuyifan.xyz:3306/zhschool
+    username: root
+    password: 408ZQU.com
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      filters: stat
+
+      stat-view-servlet: # 配置监控页功能
+        enabled: true
+        resetEnable: false
+
+      web-stat-filter: # 监控web
+        enabled: true
+        urlPattern: /*
+        exclusions: '*.js, *.gif, *.jpg, *.png, *.css, *.ico, /druid/*, /swagger-ui.html'
+
+      filter:
+        stat: # 对上面filters里面的stat的详细配置
+          slow-sql-millis: 1000
+          logSlowSql: true
+          enabled: true
+  jackson:
+    date-format: yyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
